@@ -11,20 +11,55 @@
     color: white;
   }
   .logo {
-    height: 50px; /* Adjust height as needed */
+    height: 80px; /* Adjust height as needed */
   }
   
   .navbar ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
   }
   
   .navbar a {
-    color: rgb(48, 149, 14);
     text-decoration: none;
+    font-size:xx-large;
+    font: 'Poppins', sans-serif;;
+
+  }
+
+  .link{
+    color: #3FAA6D;
+
   }
   
   .navbar a:hover {
     text-decoration: underline;
+  }
+
+  .nav-button1 {
+    background:#3FAA6D; /* No background */
+    border: none; /* No border */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    font: inherit; /* Inherit font styles */
+    text-decoration: none;
+    font-size:xx-large;
+    font: 'Poppins', sans-serif;;
+    padding: 10px 40px;
+   
+  }
+  .nav-button2 {
+    background: white; /* No background */
+    color: #3FAA6D; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    font: inherit; /* Inherit font styles */
+    padding: 10px 40px;
+    border: 3px solid #3FAA6D;
+  }
+  
+  .nav-button1:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  .nav-button2:hover {
+    text-decoration: underline; /* Underline on hover */
   }

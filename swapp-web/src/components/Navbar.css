@@ -1,0 +1,30 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  
+  .navbar h1 {
+    color: white;
+  }
+  .logo {
+    height: 50px; /* Adjust height as needed */
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navbar a {
+    color: rgb(48, 149, 14);
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }

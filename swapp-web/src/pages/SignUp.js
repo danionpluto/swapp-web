@@ -19,7 +19,7 @@ function SignUp() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       // Redirect to another page or perform other actions after successful sign-up
-      navigate('/Home');
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }

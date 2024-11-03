@@ -8,7 +8,7 @@ import SearchListing from './pages/SearchListing';
 import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
-import Navbar from './components/Navbar.js'; // Adjust the path accordingly
+import Navbar from './components/Navbar.js';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,14 +21,6 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-    {/* <div>
-    <Link to="/">Home </Link>
-    <Link to="/Chat">Chat </Link>
-    <Link to="/Profile">Profile </Link>
-    <Link to="/SignUp">Sign Up </Link>
-    <Link to="/LogIn">LogIn </Link>
-    <Link to="/SearchListing">Search Listing </Link>
-    </div> */}
     <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Home />} />

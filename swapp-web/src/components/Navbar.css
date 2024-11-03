@@ -11,7 +11,7 @@
     color: white;
   }
   .logo {
-    height: 80px; /* Adjust height as needed */
+    height: 80px; 
   }
   
   .navbar ul {
@@ -37,29 +37,30 @@
   }
 
   .nav-button1 {
-    background:#3FAA6D; /* No background */
-    border: none; /* No border */
-    color: white; /* Text color */
-    cursor: pointer; /* Pointer cursor */
-    font: inherit; /* Inherit font styles */
+    background:#3FAA6D; 
+    border: none; 
+    color: white;
+    cursor: pointer; 
+    font: inherit; 
     text-decoration: none;
     font-size:xx-large;
-    font: 'Poppins', sans-serif;;
+    font: 'Poppins', sans-serif;
     padding: 10px 40px;
    
   }
   .nav-button2 {
-    background: white; /* No background */
-    color: #3FAA6D; /* Text color */
-    cursor: pointer; /* Pointer cursor */
-    font: inherit; /* Inherit font styles */
+    background: white; 
+    color: #3FAA6D;
+    cursor: pointer; 
+    font: inherit; 
     padding: 10px 40px;
     border: 3px solid #3FAA6D;
+    
   }
   
   .nav-button1:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline; 
   }
   .nav-button2:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline; 
   }

@@ -1,7 +1,7 @@
 // Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Optional: for custom styling
+import './Navbar.css';
 import {auth} from "../firebase.js";
 import logo from '../pics/logo.png';
 import { FaHome, FaUser, FaTag, FaComments, FaHeart } from 'react-icons/fa';

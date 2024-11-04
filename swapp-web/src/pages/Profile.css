@@ -1,0 +1,131 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar img {
+  width: 140px;
+  height: 115px;
+}
+
+.profile-info {
+  margin-left: 20px;
+}
+
+.profile-info h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: normal;
+  color: #777;
+}
+
+.profile-info p {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-stats div {
+  font-weight: bold;
+}
+
+.profile-stats span {
+  font-weight: normal;
+  color: #777;
+}
+
+.profile-description {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Selling Section */
+.selling-section {
+  margin-top: 20px;
+}
+
+.selling-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+}
+
+/* Item Card */
+.item-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-width: 275px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remove-item {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #777;
+}
+
+.item-image {
+  width: 90%;
+  height: 275px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-price {
+  color: #333;
+}

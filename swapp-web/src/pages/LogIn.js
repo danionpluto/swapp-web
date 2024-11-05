@@ -15,8 +15,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("signed in");
-      navigate('/');
-      // Redirect to the home page or perform other actions
+      navigate('/'); //redirects to homepage
     } catch (error) {
       setError(error.message);
     }

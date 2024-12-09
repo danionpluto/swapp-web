@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import Navbar from './components/Navbar.js';
 
+
 function App() {
   const [user, setUser] = useState(null);
 

@@ -1,5 +1,6 @@
 
 
-.pagetitle{
-    font: 'Poppins';
+h1.pagetitle{
+    margin-left: 2rem;
+    font-family: 'Poppins', sans-serif;
 }

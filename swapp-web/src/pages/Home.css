@@ -16,6 +16,7 @@
   height: 40px; 
 }
 
+
 .search-bar {
   flex: 1;
   margin: 0 10px;
@@ -122,7 +123,7 @@
 }
 
 .app-preview img {
-  width: 200px;
+  width: 500px;
   border-radius: 10px;
 }
 

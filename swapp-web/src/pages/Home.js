@@ -51,7 +51,7 @@ function Home() {
 
       {/* Mobile App Preview */}
       <section className="app-preview">
-        <img src={mockupImage} alt="Mobile App Preview" />
+        <img src={mockupImage} alt="Mobile App Preview" className="hand"/>
       </section>
     </div>
   );

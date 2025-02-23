@@ -1,23 +1,23 @@
 import React from "react";
 import profilepic from '../pics/profilepic.png';
 import "./Profile.css";
-import { auth, db } from "../config/firebase/firebase";
+//import { auth, db } from "../config/firebase/firebase";
 
 function Profile() {
     // NEW FIREBASE STUFF
-    const [user, setUser] = useState({ id: "", firstName: "", lastName: "", bio: "" });
-    const [listings, setListings] = useState([]);
+    //const [user, setUser] = useState({ id: "", firstName: "", lastName: "", bio: "" });
+    //const [listings, setListings] = useState([]);
 
     // NEW FIREBASE STUFF
-    useEffect(() => {
-        async function fetchUserData() {
-            const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
-            setUser({ id: userDoc.id, ...userDoc.data() });
-            const userListings = await db.collection("listings").where("userId", "==", auth.currentUser.uid).get();
-            setListings(userListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        }
-        fetchUserData();
-    }, []);
+    //useEffect(() => {
+    //    async function fetchUserData() {
+    //        const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
+    //        setUser({ id: userDoc.id, ...userDoc.data() });
+    //        const userListings = await db.collection("listings").where("userId", "==", auth.currentUser.uid).get();
+    //        setListings(userListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    //    }
+    //    fetchUserData();
+    //}, []);
 
 
     return (

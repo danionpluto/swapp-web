@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import {auth} from "../firebase.js";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-
+import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -14,29 +14,48 @@ function Login() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("signed in");
       navigate('/');
-      // Redirect to the home page or perform other actions
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className="login-page">
+      <div className="login-container">
+        <h1 className="logo">Swapp</h1>
+        <form onSubmit={handleLogin} className="login-form">
+          {error && <p className="error-message">{error}</p>}
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="form-input"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="form-input"
+            />
+          </div>
+          <button type="submit" className="login-btn">
+            Login
+          </button>
+        </form>
+        <p className="signup-link">
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
+      </div>
     </div>
   );
 }

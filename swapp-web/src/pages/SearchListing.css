@@ -1,0 +1,142 @@
+/* Overall Page Layout */
+.search-listing-page {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+
+.sidebar h3 {
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+
+.category-item {
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.category-item:hover {
+  background-color: #e0f7fa;
+}
+
+.category-item.selected {
+  background-color: #26a69a;
+  color: #ffffff;
+}
+
+/* Main Content Area */
+.content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Section Styling */
+.header-section {
+  text-align: left; /* Aligns the header to the left */
+  width: 100%; /* Ensures it spans the entire width of the content area */
+  margin-bottom: 20px; /* Adds spacing between header and product grid */
+}
+
+.header-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem; /* Slightly smaller for better alignment */
+  color: #000000;
+  margin-bottom: 5px; /* Adds space between "For You" and "Items" */
+}
+
+.header-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #757575; /* Light gray for a subtler look */
+  margin: 0; /* Removes default paragraph margin */
+}
+
+/* Product List Styles */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%; /* Ensures grid spans the full content width */
+  justify-content: center; /* Centers the product grid */
+}
+
+/* Product Card Styles */
+.item-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #ffffff;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.item-card p {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.item-card p:nth-child(2) {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 5px;
+}
+
+.item-card p:nth-child(3) {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #26a69a;
+  margin-top: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .search-listing-page {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

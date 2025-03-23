@@ -10,9 +10,7 @@
   .navbar h1 {
     color: white;
   }
-  .logo {
-    height: 80px; 
-  }
+  
   
   .navbar ul {
     list-style: none;
@@ -63,4 +61,8 @@
   }
   .nav-button2:hover {
     text-decoration: underline; 
+  }
+  .logo {
+    width: 180px; 
+    height: auto; 
   }

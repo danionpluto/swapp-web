@@ -43,12 +43,7 @@ const Navbar = ({ user }) => {
         <Link className="nav-button2" to="/LogIn">Log In </Link>
         </li>
             </>
-        )}
-        
-        
-        
-            
-        
+        )} 
         
       </ul>
     </nav>

@@ -61,7 +61,7 @@ function SignUp() {
               <div className="firstname-lastname-container">
                 <div>
                   <InputField
-                    type="firstname"
+                    id="firstname"
                     name="firstname"
                     placeholder="First Name"
                   />{" "}
@@ -71,16 +71,18 @@ function SignUp() {
                     component="p"
                   />{" "}
                 </div>
-                <InputField
-                  type="lastname"
-                  name="lastname"
-                  placeholder="Last Name"
-                />
-                <ErrorMessage
-                  name="firstname"
-                  className="error"
-                  component="p"
-                />
+                <div>
+                  <InputField
+                    id="lastname"
+                    name="lastname"
+                    placeholder="Last Name"
+                  />
+                  <ErrorMessage
+                    name="firstname"
+                    className="error"
+                    component="p"
+                  />
+                </div>
               </div>
 
               <div>
@@ -89,24 +91,14 @@ function SignUp() {
                   id="email"
                   name="email"
                   placeholder=".edu Email"
-                  // iconName="mail"
+                  iconName="mail"
                 />
-                {/* <div className="email-field">
-                  <span class="material-symbols-outlined">mail</span>
-                  <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder=".edu Email"
-                    className="field"
-                  />
-                </div> */}
                 <ErrorMessage name="email" className="error" component="p" />
               </div>
 
               <div>
                 <InputField
-                  type="password"
+                  type={values.showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   placeholder="Password"
@@ -118,32 +110,21 @@ function SignUp() {
                       onClick={() =>
                         setFieldValue("showPassword", !values.showPassword)
                       }
-                    ></button>,
+                    >
+                      <span className="material-symbols-outlined">
+                        visibility
+                      </span>
+                    </button>,
                   ]}
                 />
-                {/* <div className="password-field">
-                  <span class="material-symbols-outlined">lock</span>
-                  <Field
-                    placeholder="Password"
-                    type={values.showPassword ? "text" : "password"}
-                    id="password"
-                    name="password"
-                    className="field"
-                  />
-                  <button
-                    type="button"
-                    id="toggle-password"
-                    onClick={() =>
-                      setFieldValue("showPassword", !values.showPassword)
-                    }
-                  >
-                    <span class="material-symbols-outlined">visibility</span>
-                  </button>
-                </div> */}
-
                 <ErrorMessage name="password" className="error" component="p" />
               </div>
-              <button type="submit" className="signup-button">
+
+              <button
+                type="submit"
+                className="signup-button"
+                onClick={handleSubmit}
+              >
                 Continue
               </button>
 

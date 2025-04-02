@@ -37,7 +37,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   padding: 1.5rem;
-  /* margin-bottom: -2rem; */
+  margin-bottom: -2rem;
   margin-top: 1.5rem;
 }
 
@@ -68,25 +68,6 @@ body {
   border-color: #666;
 }
 
-/* .password-field,
-.email-field {
-  border: 1px;
-  border-style: solid;
-  align-items: center;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-} */
-
-#password,
-#email {
-  width: 80%;
-  border: 0;
-  font-size: 1.5rem;
-  outline: none;
-}
-
 #toggle-password {
   align-items: center;
   background: none;
@@ -110,4 +91,21 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+}
+
+#firstname,
+#lastname,
+#email,
+#password {
+  padding: 1.5rem;
+  font-size: 1.5rem;
+}
+
+#firstname .material-symbols-outlined,
+#lastname .material-symbols-outlined,
+#email .material-symbols-outlined,
+#password .material-symbols-outlined {
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 1rem;
 }

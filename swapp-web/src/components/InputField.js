@@ -7,11 +7,14 @@ function InputField({
   type = "",
   iconName = "",
   trailing = [],
+  id = "",
 }) {
   return (
     <div className={`${name}-field`}>
-      {iconName && <span class="material-symbols-outlined">{iconName}</span>}
-      <Field placeholder={placeholder} type={type} id={name} name={name} />
+      {iconName && (
+        <span className="material-symbols-outlined">{iconName}</span>
+      )}
+      <Field placeholder={placeholder} type={type} id={id} name={name} />
       {trailing}
     </div>
   );

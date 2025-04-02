@@ -92,20 +92,3 @@ body {
   justify-content: space-between;
   gap: 1.5rem;
 }
-
-#firstname,
-#lastname,
-#email,
-#password {
-  padding: 1.5rem;
-  font-size: 1.5rem;
-}
-
-#firstname .material-symbols-outlined,
-#lastname .material-symbols-outlined,
-#email .material-symbols-outlined,
-#password .material-symbols-outlined {
-  font-size: 1rem;
-  margin: 0.5rem;
-  padding: 1rem;
-}

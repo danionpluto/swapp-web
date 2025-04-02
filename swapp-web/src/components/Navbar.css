@@ -1,68 +1,63 @@
 /* Navbar.css */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 1rem;
-  }
-  
-  .navbar h1 {
-    color: white;
-  }
-  
-  
-  .navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .navbar a {
-    text-decoration: none;
-    font-size:xx-large;
-    font: 'Poppins', sans-serif;;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 1rem;
+}
 
-  }
+.navbar h1 {
+  color: white;
+}
 
-  .link{
-    color: #3FAA6D;
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
 
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
+.navbar a {
+  text-decoration: none;
+  font-size: xx-large;
+  font: "Poppins", sans-serif;
+}
 
-  .nav-button1 {
-    background:#3FAA6D; 
-    border: none; 
-    color: white;
-    cursor: pointer; 
-    font: inherit; 
-    text-decoration: none;
-    font-size:xx-large;
-    font: 'Poppins', sans-serif;
-    padding: 10px 40px;
-   
-  }
-  .nav-button2 {
-    background: white; 
-    color: #3FAA6D;
-    cursor: pointer; 
-    font: inherit; 
-    padding: 10px 40px;
-    border: 3px solid #3FAA6D;
-    
-  }
-  
-  .nav-button1:hover {
-    text-decoration: underline; 
-  }
-  .nav-button2:hover {
-    text-decoration: underline; 
-  }
-  .logo {
-    width: 180px; 
-    height: auto; 
-  }
+.link {
+  color: #3faa6d;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.nav-button1 {
+  background: #3faa6d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  font-size: xx-large;
+  font: "Poppins", sans-serif;
+  padding: 10px 40px;
+}
+.nav-button2 {
+  background: white;
+  color: #3faa6d;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px 40px;
+  border: 3px solid #3faa6d;
+}
+
+.nav-button1:hover {
+  text-decoration: underline;
+}
+.nav-button2:hover {
+  text-decoration: underline;
+}
+.logo {
+  width: 180px;
+  height: auto;
+}

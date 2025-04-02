@@ -1,0 +1,32 @@
+[class$="-field"] > .field {
+  outline: none;
+  border: none;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 2rem;
+  width: 100%;
+}
+/* 
+[class$="-field"] > .input {
+  outline: none;
+  border: none;
+  align-items: center;
+  border-radius: 6px;
+  padding: 1.5rem;
+  font-size: 2rem;
+  width: 100%;
+} */
+
+[class$="-field"] {
+  border: 1px solid;
+  align-items: center;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+}
+
+[class$="-field"] > .material-symbols-outlined {
+  font-size: 2rem;
+  margin: 1rem;
+}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./LogIn.css";
 import "./SignUp.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InputField from "../components/InputField.js";
 
 function Login() {
@@ -81,7 +82,17 @@ function Login() {
               <button type="submit" className="login-button">
                 Login
               </button>
-
+              <Link
+                style={{
+                  fontWeight: "bolder",
+                  fontSize: "large",
+                  margin: "1rem",
+                  color: "black",
+                }}
+                to="/ForgotPassword"
+              >
+                Forgot your password
+              </Link>
               <p id="terms">
                 By continuing, you agree to the{" "}
                 <a href="https://maketheswapp.wixsite.com/swapp/privacy">

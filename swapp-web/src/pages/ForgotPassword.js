@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import "./SignUp.css";
 import InputField from "../components/InputField.js";
 
-function SignUp() {
+function ForgotPassword() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -35,8 +35,8 @@ function SignUp() {
 
   return (
     <div className="signup-container">
-      <h2>Sign Up</h2>
-      <p>We’ll send you a confirmation link.</p>
+      <h2>Forgot your password?</h2>
+      <p>We’ll send you a link via email.</p>
       <Formik
         initialValues={{
           firstname: "",
@@ -96,36 +96,12 @@ function SignUp() {
                 <ErrorMessage name="email" className="error" component="p" />
               </div>
 
-              <div>
-                <InputField
-                  type={values.showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  iconName="lock"
-                  trailing={[
-                    <button
-                      type="button"
-                      id="toggle-password"
-                      onClick={() =>
-                        setFieldValue("showPassword", !values.showPassword)
-                      }
-                    >
-                      <span className="material-symbols-outlined">
-                        visibility
-                      </span>
-                    </button>,
-                  ]}
-                />
-                <ErrorMessage name="password" className="error" component="p" />
-              </div>
-
               <button
                 type="submit"
                 className="signup-button"
                 onClick={handleSubmit}
               >
-                Continue
+                Next
               </button>
 
               <p id="terms">
@@ -147,4 +123,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default ForgotPassword;

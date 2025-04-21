@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
+} from "firebase/auth";
 import { auth } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import { Field, Form, Formik, ErrorMessage } from "formik";
@@ -26,7 +31,7 @@ function ForgotPassword() {
   const handleSubmit = async (values, formikHelpers) => {
     console.log(values);
     try {
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      await sendPasswordResetEmail(auth, values.email, values.password);
       navigate("/"); //redirect to homepage
     } catch (err) {
       return <p>{formikHelpers.ErrorMessage}</p>;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import "./SearchListing.css";
+import { Link } from "react-router-dom";
 
 
 function SearchListing() {
@@ -55,7 +56,9 @@ function SearchListing() {
          {categories.map((category) => (
            <li
              key={category}
-             className={`category-item ${selectedCategories.includes(category) ? "selected" : ""}`}
+             className={`category-item ${
+               selectedCategories.includes(category) ? "selected" : ""
+             }`}
              onClick={() => handleCategoryClick(category)}
            >
              {category}
@@ -64,28 +67,30 @@ function SearchListing() {
        </ul>
      </aside>
 
-
-     { }
+     {}
      <main className="content">
        <div className="header-section">
          <h2 className="header-title">For You</h2>
          <p className="header-subtitle">Items</p>
        </div>
 
-
-       { }
+       {}
        <div className="product-list">
          {filteredListings.length > 0 ? (
            filteredListings.map((listing) => (
-             <div key={listing.id} className="item-card">
-               <img
-                 className="product-image"
-                 src={listing.imgUrls?.[0] || "/default-image.jpg"}
-                 alt={listing.title || "Unnamed Item"}
-               />
-               <p>{listing.title || "Unnamed Item"}</p>
-               <p>${listing.price ? listing.price.toLocaleString() : "N/A"}</p>
-             </div>
+             <Link className="link" to={`/listing/${listing.id}`}>
+               <div key={listing.id} className="item-card">
+                 <img
+                   className="product-image"
+                   src={listing.imgUrls?.[0] || "/default-image.jpg"}
+                   alt={listing.title || "Unnamed Item"}
+                 />
+                 <p>{listing.title || "Unnamed Item"}</p>
+                 <p>
+                   ${listing.price ? listing.price.toLocaleString() : "N/A"}
+                 </p>
+               </div>
+             </Link>
            ))
          ) : (
            <p>No listings found for the selected category.</p>

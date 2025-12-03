@@ -21,7 +21,7 @@ function Profile() {
   //}, []);
 
   useEffect(() => {
-    async function fetchUserData() {
+    async function fetchAll() {
       const userDoc = await db
         .collection("users")
         .doc(auth.currentUser.uid)
@@ -35,7 +35,7 @@ function Profile() {
         userListings.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
       );
     }
-    fetchUserData();
+    fetchAll();
   }, []);
 
   return (

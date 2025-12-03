@@ -8,7 +8,6 @@ function OfferListing() {
   const [incomingOffers, setIncomingOffers] = useState([]);
   const [outgoingOffers, setOutgoingOffers] = useState([]);
   const [view, setView] = useState("incoming");
-  const [items, setItems] = useState({});
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -19,53 +18,68 @@ function OfferListing() {
       setUser({ id: userDoc.id, ...userDoc.data() });
 
       if (view === "incoming") {
-        const incoming = await db
+        const incomingOfferSnap = await db
           .collection("offers")
           .where("seller", "==", user.id)
           .get();
 
-        setIncomingOffers(
-          incoming.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        const incoming = await Promise.all(
+          incomingOfferSnap.docs.map(async (doc) => {
+            const data = doc.data();
+
+            const buyerDoc = await db.collection("users").doc(data.buyer).get();
+            const buyerData = buyerDoc.data();
+
+            const itemDoc = db
+              .collection("listings")
+              .where(FieldPath.documentId(), "==", data.item)
+              .get();
+            const itemData = itemDoc.data();
+
+            return {
+              id: doc.id,
+              ...data,
+              ...buyerData,
+              ...itemData,
+            };
+          })
         );
 
-        const itemIds = incomingOffers.map((offer) => offer.itemId);
-
-        const itemsSnap = db
-          .collection("listings")
-          .where(FieldPath.documentId(), "in", itemIds)
-          .get();
-
-        const items = itemsSnap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setItems(items);
+        setIncomingOffers(incoming);
       }
 
       if (view === "outgoing") {
-        const outgoing = await db
+        const outgoingOfferSnap = await db
           .collection("offers")
           .where("buyer", "==", user.id)
           .get();
 
-        setOutgoingOffers(
-          outgoing.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        const outgoing = await Promise.all(
+          outgoingOfferSnap.docs.map(async (doc) => {
+            const data = doc.data();
+
+            const sellerDoc = await db
+              .collection("users")
+              .doc(data.seller)
+              .get();
+            const sellerData = sellerDoc.data();
+
+            const itemDoc = db
+              .collection("listings")
+              .where(FieldPath.documentId(), "==", data.item)
+              .get();
+            const itemData = itemDoc.data();
+
+            return {
+              id: doc.id,
+              ...data,
+              ...sellerData,
+              ...itemData,
+            };
+          })
         );
 
-        const itemIds = outgoingOffers.map((offer) => offer.itemId);
-
-        const itemsSnap = db
-          .collection("listings")
-          .where(FieldPath.documentId(), "in", itemIds)
-          .get();
-
-        const items = itemsSnap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setItems(items);
+        setOutgoingOffers(outgoing);
       }
     };
 
@@ -88,14 +102,16 @@ function OfferListing() {
           <div className="offer-list">
             {incomingOffers.map((offer, i) => (
               <div key={i + 1} className="offer">
-                <img src={items[i].imgUrl[0]} alt={`${i + 1}`} />
+                <img src={offer.imgUrls[0]} alt={`${i + 1}`} />
                 <div className="offer-detail">
-                  <p>{items[i].title}</p>
-                  <p>Listing: ${items[i].price}</p>
-                  <p>Your Offer: ${items[i].price}</p>
+                  <p>{offer.title}</p>
+                  <p>Listing: ${offer.price}</p>
+                  <p>Your Offer: ${offer.amount}</p>
                   {/* edit link to direct to the link corresponding to chat components */}
-                  <Link to={`/chat/:${offer[i].sellerId}`}>
-                    <button>View Chat</button>
+                  <Link to={`/chat/:${offer.seller}`}>
+                    <button>
+                      {offer.firstName} {offer.lastName}
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -105,14 +121,16 @@ function OfferListing() {
           <div>
             {outgoingOffers.map((offer, i) => (
               <div key={i + 1} className="offer">
-                <img src={items[i].imgUrl[0]} alt={`${i + 1}`} />
+                <img src={offer.imgUrls[0]} alt={`${i + 1}`} />
                 <div className="offer-detail">
-                  <p>{items[i].title}</p>
-                  <p>Listing: ${items[i].price}</p>
-                  <p>Your Offer: ${items[i].price}</p>
+                  <p>{offer.title}</p>
+                  <p>Listing: ${offer.price}</p>
+                  <p>Your Offer: ${offer.amount}</p>
                   {/* edit link to direct to the link corresponding to chat components */}
-                  <Link to={`/chat/:${offer[i].sellerId}`}>
-                    <button>View Chat</button>
+                  <Link to={`/chat/:${offer.buyer}`}>
+                    <button>
+                      {offer.firstName} {offer.lastName}
+                    </button>
                   </Link>
                 </div>
               </div>

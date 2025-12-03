@@ -30,7 +30,7 @@ function OfferListing() {
             const buyerDoc = await db.collection("users").doc(data.buyer).get();
             const buyerData = buyerDoc.data();
 
-            const itemDoc = db
+            const itemDoc = await db
               .collection("listings")
               .where(FieldPath.documentId(), "==", data.item)
               .get();
@@ -64,7 +64,7 @@ function OfferListing() {
               .get();
             const sellerData = sellerDoc.data();
 
-            const itemDoc = db
+            const itemDoc = await db
               .collection("listings")
               .where(FieldPath.documentId(), "==", data.item)
               .get();

@@ -29,7 +29,7 @@ function Profile() {
       setUser({ id: userDoc.id, ...userDoc.data() });
       const userListings = await db
         .collection("listings")
-        .where("userId", "==", auth.currentUser.uid)
+        .where("sellerId", "==", auth.currentUser.uid)
         .get();
       setListings(
         userListings.docs.map((doc) => ({ id: doc.id, ...doc.data() }))

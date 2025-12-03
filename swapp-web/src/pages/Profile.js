@@ -1,117 +1,95 @@
-import React from "react";
-import profilepic from '../pics/profilepic.png';
+import React, { useEffect, useState } from "react";
+import profilepic from "../pics/profilepic.png";
 import "./Profile.css";
-//import { auth, db } from "../config/firebase/firebase";
+import { auth, db } from "../config/firebase/firebase";
+import { Link } from "react-router-dom";
 
 function Profile() {
-    // NEW FIREBASE STUFF
-    //const [user, setUser] = useState({ id: "", firstName: "", lastName: "", bio: "" });
-    //const [listings, setListings] = useState([]);
+  // NEW FIREBASE STUFF
+  const [user, setUser] = useState(null);
+  const [listings, setListings] = useState([]);
 
-    // NEW FIREBASE STUFF
-    //useEffect(() => {
-    //    async function fetchUserData() {
-    //        const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
-    //        setUser({ id: userDoc.id, ...userDoc.data() });
-    //        const userListings = await db.collection("listings").where("userId", "==", auth.currentUser.uid).get();
-    //        setListings(userListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-    //    }
-    //    fetchUserData();
-    //}, []);
+  // NEW FIREBASE STUFF
+  //useEffect(() => {
+  //    async function fetchUserData() {
+  //        const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
+  //        setUser({ id: userDoc.id, ...userDoc.data() });
+  //        const userListings = await db.collection("listings").where("userId", "==", auth.currentUser.uid).get();
+  //        setListings(userListings.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+  //    }
+  //    fetchUserData();
+  //}, []);
 
+  useEffect(() => {
+    async function fetchUserData() {
+      const userDoc = await db
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .get();
+      setUser({ id: userDoc.id, ...userDoc.data() });
+      const userListings = await db
+        .collection("listings")
+        .where("userId", "==", auth.currentUser.uid)
+        .get();
+      setListings(
+        userListings.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
+    }
+    fetchUserData();
+  }, []);
 
-    return (
-        <div className="profile">
-            {/* Profile Header */}
-            <div className="profile-header">
-                <div className="profile-avatar">
-                    <img src={profilepic} alt="Avatar" />
-                </div>
-                <div className="profile-info">
-                    <h2>First Last, <span className="username">netid</span></h2>
-                    <p>Major &nbsp;|&nbsp; Class of 202x</p>
-                    <div className="profile-stats">
-                        <div>0 <span>Followers</span></div>
-                        <div>0 <span>Following</span></div>
-                    </div>
-                    <p className="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac sem id mi sodales.</p>
-                </div>
-            </div>
-
-            {/* Selling Section */}
-            <div className="selling-section">
-                <h3>Selling:</h3>
-                <div className="items-grid">
-                    {/* Repeat this block for each item */}
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Shirt</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Jacket</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                    {/* Add more items as needed */}
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Shoes</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Shirt</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Pants</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                    <div className="item-card">
-                        <button className="remove-item">×</button>
-                        <div className="item-image">
-                            {/* Placeholder for image */}
-                        </div>
-                        <div className="item-details">
-                            <span className="item-name">Shirt</span>
-                            <span className="item-price">$40</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="profile">
+      {/* Profile Header */}
+      <div className="profile-header">
+        <div className="profile-avatar">
+          {/* placeholder pfp */}
+          <img src={profilepic} alt="Avatar" />
         </div>
-    );
+        <div className="profile-info">
+          <h2>
+            {user.firstName} {user.lastName}{" "}
+            <span className="username">{user.email.split("@")[0]}</span>
+          </h2>
+          <p>Major &nbsp;|&nbsp; Class of 202x</p>
+          <div className="profile-stats">
+            <div>
+              0 <span>Followers</span>
+            </div>
+            <div>
+              0 <span>Following</span>
+            </div>
+          </div>
+          <p className="profile-description">{user.bio}</p>
+        </div>
+      </div>
+
+      {/* Selling Section */}
+      <div className="selling-section">
+        <h3>Selling:</h3>
+        <div className="items-grid">
+          {/* Repeat this block for each item */}
+          {listings.map((listing) => (
+            <div key={listing.id} className="item-card">
+              <button className="remove-item">×</button>
+              <div className="item-image">
+                <Link to={`/listing/${listing.id}`}>
+                  <img src={listing.imgUrls[0]} alt={listing.name} />
+                </Link>
+              </div>
+              <div className="item-details">
+                <span className="item-name">{listing.name}</span>
+                <span className="item-price">${listing.price}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Profile;
-
 
 /**
  * function Listings({ listings, onDelete }) {

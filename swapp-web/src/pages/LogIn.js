@@ -42,70 +42,68 @@ function Login() {
         validationSchema={loginSchema}
       >
         {({ values, handleSubmit, setFieldValue, errors, touched }) => (
-          <div>
-            <Form noValidate={true} className="input-fields-container">
-              <div>
-                <InputField
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder=".edu Email"
-                  iconName="mail"
-                />
-                <ErrorMessage name="email" className="error" component="p" />
-              </div>
+          <Form noValidate={true} className="input-fields-container">
+            <div>
+              <InputField
+                type="email"
+                id="email"
+                name="email"
+                placeholder=".edu Email"
+                iconName="mail"
+              />
+              <ErrorMessage name="email" className="error" component="p" />
+            </div>
 
-              <div>
-                <InputField
-                  type={values.showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  iconName="lock"
-                  trailing={[
-                    <button
-                      type="button"
-                      id="toggle-password"
-                      onClick={() =>
-                        setFieldValue("showPassword", !values.showPassword)
-                      }
-                    >
-                      <span className="material-symbols-outlined">
-                        visibility
-                      </span>
-                    </button>,
-                  ]}
-                />
-                <ErrorMessage name="password" className="error" component="p" />
-              </div>
+            <div>
+              <InputField
+                type={values.showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                placeholder="Password"
+                iconName="lock"
+                trailing={[
+                  <button
+                    type="button"
+                    id="toggle-password"
+                    onClick={() =>
+                      setFieldValue("showPassword", !values.showPassword)
+                    }
+                  >
+                    <span className="material-symbols-outlined">
+                      visibility
+                    </span>Í
+                  </button>,
+                ]}
+              />
+              <ErrorMessage name="password" className="error" component="p" />
+            </div>
 
-              <button type="submit" className="login-button">
-                Login
-              </button>
-              <Link
-                style={{
-                  fontWeight: "bolder",
-                  fontSize: "large",
-                  margin: "1rem",
-                  color: "black",
-                }}
-                to="/ForgotPassword"
-              >
-                Forgot your password
-              </Link>
-              <p id="terms">
-                By continuing, you agree to the{" "}
-                <a href="https://maketheswapp.wixsite.com/swapp/privacy">
-                  Terms of Use
-                </a>{" "}
-                and the{" "}
-                <a href="https://maketheswapp.wixsite.com/swapp/privacy">
-                  Privacy Policy
-                </a>
-                .
-              </p>
-            </Form>
-          </div>
+            <button type="submit" className="login-button">
+              Login
+            </button>
+            <Link
+              style={{
+                fontWeight: "bolder",
+                fontSize: "large",
+                margin: "1rem",
+                color: "black",
+              }}
+              to="/ForgotPassword"
+            >
+              Forgot your password
+            </Link>
+            <p id="terms">
+              By continuing, you agree to the{" "}
+              <a href="https://maketheswapp.wixsite.com/swapp/privacy">
+                Terms of Use
+              </a>{" "}
+              and the{" "}
+              <a href="https://maketheswapp.wixsite.com/swapp/privacy">
+                Privacy Policy
+              </a>
+              .
+            </p>
+          </Form>
         )}
       </Formik>
     </div>

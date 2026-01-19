@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Navbar from "./components/Navbar.js";
 import ListingDetail from "./pages/ListingDetail";
+import OfferListing from "./pages/OfferListing.js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,12 +32,13 @@ function App() {
             <Route path="/Chat" element={<Chat />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/SearchListing" element={<SearchListing />} />
+            <Route path="/Listing/:listingId" element={<ListingDetail />} />
+            <Route path="/Offers" element={<OfferListing />} />
           </>
         ) : (
           <>
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/LogIn" element={<LogIn />} />
-            <Route path="/listing/:listingId" element={<ListingDetail />} />
           </>
         )}
       </Routes>

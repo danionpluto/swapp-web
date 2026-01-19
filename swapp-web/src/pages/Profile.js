@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import profilepic from "../pics/profilepic.png";
 import "./Profile.css";
-import { auth, db } from "../config/firebase/firebase";
+import { auth, db } from "../firebase";
 import { Link } from "react-router-dom";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 
 function Profile() {
   // NEW FIREBASE STUFF
   const [user, setUser] = useState(null);
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState(null);
 
   // NEW FIREBASE STUFF
   //useEffect(() => {
@@ -20,23 +28,33 @@ function Profile() {
   //    fetchUserData();
   //}, []);
 
+  const fetchAll = async () => {
+    const userQuerySnap = await getDocs(
+      query(
+        collection(db, "USERS"),
+        where("email", "==", auth.currentUser.email)
+      )
+    );
+    const userDoc = userQuerySnap.docs[0];
+    setUser({ id: userDoc.id, ...userDoc.data() });
+
+    const userListings = await getDocs(
+      query(collection(db, "Listings"), where("sellerId", "==", userDoc.id))
+    );
+    setListings(
+      userListings.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      })
+    );
+  };
+
   useEffect(() => {
-    async function fetchAll() {
-      const userDoc = await db
-        .collection("users")
-        .doc(auth.currentUser.uid)
-        .get();
-      setUser({ id: userDoc.id, ...userDoc.data() });
-      const userListings = await db
-        .collection("listings")
-        .where("sellerId", "==", auth.currentUser.uid)
-        .get();
-      setListings(
-        userListings.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
-    }
     fetchAll();
   }, []);
+
+  if (!user || !listings) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="profile">
@@ -70,18 +88,19 @@ function Profile() {
         <div className="items-grid">
           {/* Repeat this block for each item */}
           {listings.map((listing) => (
-            <div key={listing.id} className="item-card">
-              <button className="remove-item">×</button>
-              <div className="item-image">
-                <Link to={`/listing/${listing.id}`}>
-                  <img src={listing.imgUrls[0]} alt={listing.name} />
-                </Link>
+            <Link to={`/Listing/${listing.id}`}>
+              <div key={listing.id} className="item-card">
+                <img
+                  className="item-image"
+                  src={listing.imgUrls[0]}
+                  alt={listing.name}
+                />
+                <div className="item-details">
+                  <span className="item-name">{listing.title}</span>
+                  <span className="item-price">${listing.price}</span>
+                </div>
               </div>
-              <div className="item-details">
-                <span className="item-name">{listing.name}</span>
-                <span className="item-price">${listing.price}</span>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

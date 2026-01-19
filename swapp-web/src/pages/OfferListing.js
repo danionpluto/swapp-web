@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import {
   documentId,
@@ -19,32 +19,40 @@ function OfferListing() {
 
   const fetchAll = async () => {
     const userSnap = await getDocs(
-      collection(db, "USERS"),
-      where("email", "==", auth.currentUser.email)
+      query(
+        collection(db, "USERS"),
+        where("email", "==", auth.currentUser.email)
+      )
     );
     setUser({ id: userSnap.docs[0].id, ...userSnap.docs[0].data() });
 
     const incomingOfferSnap = await getDocs(
-      collection(db, "OFFERS"),
-      where("buyer", "==", userSnap.docs[0].id)
+      query(
+        collection(db, "OFFERS"),
+        where("seller", "==", userSnap.docs[0].id)
+      )
     );
 
     const incoming = await Promise.all(
       incomingOfferSnap.docs.map(async (doc) => {
-        const sellerDocs = await getDocs(
-          collection(db, "USERS"),
-          where(documentId(), "==", doc.data().seller)
+        const buyerDocs = await getDocs(
+          query(
+            collection(db, "USERS"),
+            where(documentId(), "==", doc.data().buyer)
+          )
         );
 
         const listingDocs = await getDocs(
-          collection(db, "Listings"),
-          where(documentId(), "==", doc.data().item)
+          query(
+            collection(db, "Listings"),
+            where(documentId(), "==", doc.data().item)
+          )
         );
 
-        if (sellerDocs.empty || listingDocs.empty) return null;
+        if (buyerDocs.empty || listingDocs.empty) return null;
 
         return {
-          ...sellerDocs.docs[0].data(),
+          ...buyerDocs.docs[0].data(),
           ...listingDocs.docs[0].data(),
         };
       })
@@ -52,26 +60,29 @@ function OfferListing() {
     setIncomingOffers(incoming);
 
     const outgoingOfferSnap = await getDocs(
-      collection(db, "OFFERS"),
-      where("seller", "==", userSnap.docs[0].id)
+      query(collection(db, "OFFERS"), where("buyer", "==", userSnap.docs[0].id))
     );
 
     const outgoing = await Promise.all(
       outgoingOfferSnap.docs.map(async (doc) => {
-        const buyerDocs = await getDocs(
-          collection(db, "USERS"),
-          where(documentId(), "==", doc.data().buyer)
+        const sellerDocs = await getDocs(
+          query(
+            collection(db, "OFFERS"),
+            where("seller", "==", doc.data().seller)
+          )
         );
 
         const listingDocs = await getDocs(
-          collection(db, "Listings"),
-          where(documentId(), "==", doc.data().item)
+          query(
+            collection(db, "Listings"),
+            where(documentId(), "==", doc.data().item)
+          )
         );
 
-        if (buyerDocs.empty || listingDocs.empty) return null;
+        if (sellerDocs.empty || listingDocs.empty) return null;
 
         return {
-          ...buyerDocs.docs[0].data(),
+          ...sellerDocs.docs[0].data(),
           ...listingDocs.docs[0].data(),
         };
       })
@@ -96,7 +107,7 @@ function OfferListing() {
           <button onClick={() => setView("incoming")}>Incoming</button>
           <button onClick={() => setView("outgoing")}>Outgoing</button>
         </div>
-        {view === "incoming" ? (
+        {view == "incoming" ? (
           <div className="offer-list">
             {incomingOffers.map((offer, i) => (
               <div key={i + 1} className="offer">
@@ -125,7 +136,7 @@ function OfferListing() {
                   <p>Listing: ${offer.price}</p>
                   <p>Your Offer: ${offer.amount}</p>
                   {/* edit link to direct to the link corresponding to chat components */}
-                  <Link to={`/chat/:${offer.buyer}`}>
+                  <Link to={`/chat/${offer.buyer}`}>
                     <button>
                       {offer.firstName} {offer.lastName}
                     </button>

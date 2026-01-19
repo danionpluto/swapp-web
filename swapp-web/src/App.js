@@ -15,10 +15,11 @@ import OfferListing from "./pages/OfferListing.js";
 function App() {
   const [user, setUser] = useState(null);
 
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    setUser(user);
+  });
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
     return () => unsubscribe();
   }, []);
   return (
@@ -26,7 +27,6 @@ function App() {
       <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Home />} />
-
         {user ? (
           <>
             <Route path="/Chat" element={<Chat />} />
